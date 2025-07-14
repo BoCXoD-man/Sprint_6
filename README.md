@@ -59,8 +59,10 @@ pytest tests/test_questions.py
 ```
 С генерацией Allure-отчёта:
 ```bash
-pytest --alluredir=allure-results
-allure serve allure-results
+pytest --alluredir=allure-results # 1. Запуск pytest с включением сбора данных для Allure
+allure generate allure-results -o allure-report --clean # 2. Генерация HTML-отчета из результатов
+allure open allure-report # 3. Открытие сгенерированного отчета в браузере
+allure serve allure-results # (Альтернатива пунктам 2 и 3) Одноразовая генерация и отображение отчета
 ```
 ---
 
