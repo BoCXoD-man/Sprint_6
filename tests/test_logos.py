@@ -1,8 +1,6 @@
 # coding=utf-8
 
 import allure
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from page_objects.main_page import MainPage
 
 
@@ -18,37 +16,32 @@ class TestRedirects:
     @allure.story("Клик по логотипу Самоката ведет на главную")
     def test_click_scooter_logo_redirects_to_main(self, driver):
         """
-        Проверяет, что при клике на логотип 'Самокат' происходит переход на главную страницу (url содержит 'qa-scooter').
+        Клик по логотипу Самоката должен перенаправлять на главную страницу.
+        Args:
+            driver: WebDriver
         """
         page = MainPage(driver)
         page.open()
         page.click_scooter_logo()
-        assert "qa-scooter" in driver.current_url, "Ожидался редирект на главную страницу Самоката"
+        page.url_should_contain("qa-scooter")
 
     @allure.story("Клик по логотипу Яндекса открывает Дзен/Яндекс")
     def test_click_yandex_logo_opens_dzen(self, driver):
         """
-        Проверяет, что при клике на логотип Яндекса открывается новая вкладка с Дзен/Яндекс.
+        Клик по логотипу Яндекса должен открывать новую вкладку с Дзен/Яндекс.
+        Args:
+            driver: WebDriver
         """
         page = MainPage(driver)
         page.open()
         original_window = driver.current_window_handle
         page.click_yandex_logo()
 
-        # Ожидание открытия новой вкладки
-        WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))
+        page.wait_for_tab_count(2)
+        page.switch_to_new_tab(original_window)
+        page.wait_for_url_change_from("about:blank")
 
-        # Получаем дескриптор новой вкладки (которая открылась после клика)
-        # Генерируем список всех вкладок и выбираем ту, которая не является оригинальной
-        new_window = [w for w in driver.window_handles if w != original_window][0]  # Их должно быть только две до этого шага
-
-        # Переключаемся на новую вкладку для продолжения работы
-        driver.switch_to.window(new_window)
-
-        # Ожидание загрузки URL
-        WebDriverWait(driver, 10).until(lambda d: d.current_url != "about:blank")
-        current_url = driver.current_url
-
+        current_url = page.get_current_url()
         assert (
             "dzen.ru" in current_url
             or "yandex.ru" in current_url
