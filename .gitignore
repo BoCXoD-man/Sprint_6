@@ -19,8 +19,7 @@ venv/
 
 # Allure
 allure-results/
-*.json
-*.html
+
 
 # pytest cache
 .pytest_cache/
