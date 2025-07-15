@@ -16,23 +16,26 @@
 
 ## 📁 Структура проекта
 ```text
-Spirit_6/
+Sprint_6/
 │
 ├── allure-report/          # Отчеты Allure
 │
-├── page_objects/           # Page Object модели
-│ ├── main_page.py          # Главная страница
-│ └── order_page.py         # Страница заказа
+├── page.objects/           # Page Object модели
+│   ├── base_page.py        # Базовая страница
+│   ├── main_page.py        # Главная страница
+│   └── order_page.py       # Страница заказа
 │
 ├── tests/                  # Тесты
-│ ├── test_logos.py         # Тесты редиректов через логотипы
-│ ├── test_order_flow.py    # Тесты сценария заказа
-│ └── test_questions.py     # Тесты вопросов
+│   ├── test_logos.py       # Тесты редиректов через логотипы
+│   ├── test_order_flow.py  # Тесты сценария заказа
+│   └── test_questions.py   # Тесты вопросов
 │
 ├── .gitignore              # Игнорируемые файлы для Git
 ├── conftest.py             # Фикстуры pytest
 ├── README.md               # Этот файл
-└── requirements.txt        # Зависимости
+├── requirements.txt        # Зависимости
+├── test_data.py            # Тестовые данные
+└── utils.py                # Вспомогательные утилиты
 ``` 
 ---
 
