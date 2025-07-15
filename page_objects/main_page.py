@@ -2,13 +2,18 @@ import allure
 from selenium.webdriver.common.by import By
 from page_objects.base_page import BasePage
 from page_objects.order_page import OrderPage
+from selenium.common.exceptions import TimeoutException
 
 class MainPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.url = "https://qa-scooter.praktikum-services.ru/"
-        self.order_button_top = (By.XPATH, "//button[text()='Заказать'][1]")
-        self.order_button_bottom = (By.XPATH, "//button[text()='Заказать'][last()]")
+        # self.order_button_top = (By.XPATH, "//button[text()='Заказать'][1]")
+        # self.order_button_bottom = (By.XPATH, "//button[text()='Заказать'][last()]")
+        self.order_button_top = (
+            By.XPATH, "//div[contains(@class, 'Header_Header__214zg')]/div[contains(@class, 'Header_Nav__AGCXC')]//button[contains(text(), 'Заказать')]")
+        self.order_button_bottom = (
+            By.XPATH, "//div[contains(@class, 'Home_FinishButton')]//button[text()='Заказать']")
         self.logo_scooter = (By.CLASS_NAME, "Header_LogoScooter__3lsAR")
         self.logo_yandex = (By.CLASS_NAME, "Header_LogoYandex__3TSOI")
         self.questions = (By.CLASS_NAME, "accordion__button")
@@ -18,11 +23,25 @@ class MainPage(BasePage):
     def open(self):
         self.driver.get(self.url)
 
+    # @allure.step("Клик по кнопке 'Заказать' в позиции: {position}")
+    # def click_order_button(self, position='top'):
+    #     if position == 'top':
+    #         self.click(self.order_button_top)
+    #     else:
+    #         self.click(self.order_button_bottom)
+
     @allure.step("Клик по кнопке 'Заказать' в позиции: {position}")
     def click_order_button(self, position='top'):
+        # Безопасное принятие cookies (если есть баннер)
+        self.accept_cookies_if_present()
+
         if position == 'top':
+            self.scroll_to(self.order_button_top)
+            self.wait_for_clickable(self.order_button_top)
             self.click(self.order_button_top)
         else:
+            self.scroll_to(self.order_button_bottom)
+            self.wait_for_clickable(self.order_button_bottom)
             self.click(self.order_button_bottom)
 
     @allure.step("Клик по вопросу под номером {index}")
@@ -112,3 +131,16 @@ class MainPage(BasePage):
         order_page.wait_for_visible(order_page.success_modal)
 
         assert order_page.is_order_successful()
+
+
+    @allure.step("Проверка и принятие cookie-баннера (если есть)")
+    def accept_cookies_if_present(self):
+        """ Проверяет наличие баннера cookie и принимает его, если он присутствует.
+        Если баннер не найден, просто продолжает выполнение.
+        """
+        cookie_button = (By.ID, "rcc-confirm-button")
+        try:
+            self.wait_for_clickable(cookie_button)
+            self.click(cookie_button)
+        except TimeoutException:
+            pass  # баннер не появился — просто продолжаем
