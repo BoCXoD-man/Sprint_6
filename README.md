@@ -16,23 +16,26 @@
 
 ## 📁 Структура проекта
 ```text
-Spirit_6/
+Sprint_6/
 │
 ├── allure-report/          # Отчеты Allure
 │
-├── page_objects/           # Page Object модели
-│ ├── main_page.py          # Главная страница
-│ └── order_page.py         # Страница заказа
+├── page.objects/           # Page Object модели
+│   ├── base_page.py        # Базовая страница
+│   ├── main_page.py        # Главная страница
+│   └── order_page.py       # Страница заказа
 │
 ├── tests/                  # Тесты
-│ ├── test_logos.py         # Тесты редиректов через логотипы
-│ ├── test_order_flow.py    # Тесты сценария заказа
-│ └── test_questions.py     # Тесты вопросов
+│   ├── test_logos.py       # Тесты редиректов через логотипы
+│   ├── test_order_flow.py  # Тесты сценария заказа
+│   └── test_questions.py   # Тесты вопросов
 │
 ├── .gitignore              # Игнорируемые файлы для Git
 ├── conftest.py             # Фикстуры pytest
 ├── README.md               # Этот файл
-└── requirements.txt        # Зависимости
+├── requirements.txt        # Зависимости
+├── test_data.py            # Тестовые данные
+└── utils.py                # Вспомогательные утилиты
 ``` 
 ---
 
@@ -59,8 +62,10 @@ pytest tests/test_questions.py
 ```
 С генерацией Allure-отчёта:
 ```bash
-pytest --alluredir=allure-results
-allure serve allure-results
+pytest --alluredir=allure-results # 1. Запуск pytest с включением сбора данных для Allure
+allure generate allure-results -o allure-report --clean # 2. Генерация HTML-отчета из результатов
+allure open allure-report # 3. Открытие сгенерированного отчета в браузере
+allure serve allure-results # (Альтернатива пунктам 2 и 3) Одноразовая генерация и отображение отчета
 ```
 ---
 
@@ -88,9 +93,12 @@ allure serve allure-results
 
 ### 🧼 Авторы/участники проекта
 
-* ✍️ Андрей Манаев                — студент Яндекс.Практикума
-* ❓  Константин Булатов           — идейный вдохновитель в вопросах улучшения проекта
-* 💻 ChatGPT                      — ассистент и консультант по тестированию 😄
+```text
+✍️ Андрей Манаев                   — студент Яндекс.Практикума, разработчик проекта
+❓  Константин Булатов              — идейный вдохновитель в вопросах улучшения проекта
+🔍 Леонид Долгоаршинных            — ревьюер проекта
+💻 ChatGPT                         — ассистент и консультант по тестированию 😄
+```
 
 ### 🔎 FAQ: 
 

@@ -1,0 +1,32 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","323","test_faq_answers[7]","tests","Tue Jul 15 15:17:37 MSK 2025","passed","Tue Jul 15 15:17:37 MSK 2025","TestImportantQuestions","test_questions","",""
+"","4042","test_faq_answers[0]","tests","Tue Jul 15 15:17:30 MSK 2025","passed","Tue Jul 15 15:17:35 MSK 2025","TestImportantQuestions","test_questions","",""
+"","554","test_faq_answers[4]","tests","Tue Jul 15 15:17:36 MSK 2025","passed","Tue Jul 15 15:17:36 MSK 2025","TestImportantQuestions","test_questions","",""
+"","312","test_faq_answers[6]","tests","Tue Jul 15 15:17:36 MSK 2025","passed","Tue Jul 15 15:17:37 MSK 2025","TestImportantQuestions","test_questions","",""
+"","361","test_faq_answers[1]","tests","Tue Jul 15 15:17:35 MSK 2025","passed","Tue Jul 15 15:17:35 MSK 2025","TestImportantQuestions","test_questions","",""
+"
+        Заказ через верхнюю кнопку с набором 1. 
+        Args:
+            driver: WebDriver
+            today_date: Текущая дата
+        ","7726","test_order_flow_with_button_top","tests","Tue Jul 15 15:17:01 MSK 2025","passed","Tue Jul 15 15:17:09 MSK 2025","TestScooterOrderFlow","test_order_flow","",""
+"","351","test_faq_answers[3]","tests","Tue Jul 15 15:17:35 MSK 2025","passed","Tue Jul 15 15:17:36 MSK 2025","TestImportantQuestions","test_questions","",""
+"
+        Клик по логотипу Самоката должен перенаправлять на главную страницу.
+        Args:
+            driver: WebDriver
+        ","4651","test_click_scooter_logo_redirects_to_main","tests","Tue Jul 15 15:16:41 MSK 2025","passed","Tue Jul 15 15:16:46 MSK 2025","TestRedirects","test_logos","",""
+"
+        Заказ через нижнюю кнопку с набором 2.
+        Args:
+            driver: WebDriver
+            today_date: Текущая дата
+            fake_user: Фейковые данные пользователя
+        ","8640","test_order_flow_with_button_bottom","tests","Tue Jul 15 15:17:09 MSK 2025","passed","Tue Jul 15 15:17:18 MSK 2025","TestScooterOrderFlow","test_order_flow","",""
+"","320","test_faq_answers[5]","tests","Tue Jul 15 15:17:36 MSK 2025","passed","Tue Jul 15 15:17:36 MSK 2025","TestImportantQuestions","test_questions","",""
+"","349","test_faq_answers[2]","tests","Tue Jul 15 15:17:35 MSK 2025","passed","Tue Jul 15 15:17:35 MSK 2025","TestImportantQuestions","test_questions","",""
+"
+        Клик по логотипу Яндекса должен открывать новую вкладку с Дзен/Яндекс.
+        Args:
+            driver: WebDriver
+        ","2159","test_click_yandex_logo_opens_dzen","tests","Tue Jul 15 15:16:46 MSK 2025","passed","Tue Jul 15 15:16:48 MSK 2025","TestRedirects","test_logos","",""
